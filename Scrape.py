@@ -1,7 +1,14 @@
 from bs4 import BeautifulSoup
 from requests import get
 import pandas as pd
+import pymongo as mongo
+
+
 url = 'https://www.blockchain.com/btc/unconfirmed-transactions'
+client = mongo.MongoClient("mongodb://127.0.0.1:27017/")
+mydb = client["BitcoinValue"]
+mycol = mydb["Topvalue"]
+
 def Scrape():
 
     response = get(url)
@@ -38,10 +45,16 @@ def Scrape():
 
     data = {'Hash':hashes,'Time':time,'BTC value':BTCvalue,'USD value':USDvalue}
     df = pd.DataFrame(data)
-   
-    print(df.loc[[maxindex]])
+    
+    output = df.loc[[maxindex]]
+    
+    columns = df.columns
 
-Scrape()    
-
-
-
+    rowdict = {}
+    for x in columns:
+        
+        rowdict[x] = str(output[x].values)[2:-2]
+        print(output[x].values)
+    mycol.insert_one(rowdict) 
+    #print(rowdict)
+Scrape()
