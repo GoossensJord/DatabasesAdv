@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from requests import get
 import pandas as pd
 import pymongo as mongo
+import time
 
 
 url = 'https://www.blockchain.com/btc/unconfirmed-transactions'
@@ -52,9 +53,12 @@ def Scrape():
 
     rowdict = {}
     for x in columns:
-        
         rowdict[x] = str(output[x].values)[2:-2]
-        print(output[x].values)
+        #print(output[x].values)
     mycol.insert_one(rowdict) 
     #print(rowdict)
-Scrape()
+
+while(True):
+    Scrape()
+    print("Done!")
+    time.sleep(60)
