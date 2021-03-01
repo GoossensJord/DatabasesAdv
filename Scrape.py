@@ -3,8 +3,10 @@ from requests import get
 import pandas as pd
 import pymongo as mongo
 import time
+import redis
 
-
+r = redis.Redis()
+r.delete("data")
 url = 'https://www.blockchain.com/btc/unconfirmed-transactions'
 client = mongo.MongoClient("mongodb://127.0.0.1:27017/")
 mydb = client["BitcoinValue"]
@@ -40,25 +42,18 @@ def Scrape():
     USDvalue = USDvalue[1::]
     time = time[1::]
     hashes = hashes[1::]
-
-    maxvalue = max(BTCvalue)
-    maxindex = BTCvalue.index(maxvalue)
+    #print(hashes)
 
     data = {'Hash':hashes,'Time':time,'BTC value':BTCvalue,'USD value':USDvalue}
     df = pd.DataFrame(data)
-    
-    output = df.loc[[maxindex]]
-    
-    columns = df.columns
 
-    rowdict = {}
-    for x in columns:
-        rowdict[x] = str(output[x].values)[2:-2]
-        #print(output[x].values)
-    mycol.insert_one(rowdict) 
-    #print(rowdict)
+    jaysonfile = df.to_json()
+
+    r.rpush("data",jaysonfile)
+
+#-----------------------------------------------------
 
 while(True):
     Scrape()
-    print("Done!")
+    print("done")
     time.sleep(60)
