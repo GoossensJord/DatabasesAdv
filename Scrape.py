@@ -7,10 +7,9 @@ import redis
 
 r = redis.Redis()
 r.delete("data")
+
 url = 'https://www.blockchain.com/btc/unconfirmed-transactions'
-client = mongo.MongoClient("mongodb://127.0.0.1:27017/")
-mydb = client["BitcoinValue"]
-mycol = mydb["Topvalue"]
+
 
 def Scrape():
 
@@ -44,7 +43,7 @@ def Scrape():
     hashes = hashes[1::]
     #print(hashes)
 
-    data = {'Hash':hashes,'Time':time,'BTC value':BTCvalue,'USD value':USDvalue}
+    data = {'Hash':hashes,'Time':time,'BTCvalue':BTCvalue,'USDvalue':USDvalue}
     df = pd.DataFrame(data)
 
     jaysonfile = df.to_json()
