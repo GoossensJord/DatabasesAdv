@@ -3,6 +3,7 @@ import redis
 import json
 import pymongo as mongo
 import numpy as np
+from datetime import date
 
 r = redis.Redis()
 
@@ -23,7 +24,7 @@ compdf = pd.concat(dfs,ignore_index=True)
 uniquetimes = compdf['Time'].unique().tolist()
 
 for x in uniquetimes:
-    outputdict = {}
+    outputdict = {'Date' : str(date.today())}
     tempdf = compdf[compdf.Time.eq(x)]
 
     maxrow = tempdf[tempdf.BTCvalue == tempdf.BTCvalue.max()]
