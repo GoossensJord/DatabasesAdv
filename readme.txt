@@ -1,5 +1,6 @@
 Om de scraper te gebruiken wordt er gebruikt gemaakt van de volgende libraries.
-
+- Requests
+sudo pip3 install requests
 - BeautifulSoup
 sudo pip3 install bs4
 - Pandas
