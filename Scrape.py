@@ -6,7 +6,7 @@ import time
 import redis
 
 r = redis.Redis(host='0.0.0.0',port= 6379)
-r.delete("data")
+#r.delete("data")
 
 url = 'https://www.blockchain.com/btc/unconfirmed-transactions'
 
