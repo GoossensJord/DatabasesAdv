@@ -6,7 +6,7 @@ import time
 import redis
 
 r = redis.Redis(host='127.0.0.1',port='6379')
-r.delete("data")
+r.delete("BitcoinDatabase")
 
 url = 'https://www.blockchain.com/btc/unconfirmed-transactions'
 
@@ -48,7 +48,7 @@ def Scrape():
 
     jaysonfile = df.to_json()
 
-    r.rpush("data",jaysonfile)
+    r.rpush("BitcoinDatabase",jaysonfile)
 
 #-----------------------------------------------------
 
