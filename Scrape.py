@@ -48,7 +48,7 @@ def Scrape():
 
     jaysonfile = df.to_json()
 
-    #r.rpush("BitcoinDatabase",jaysonfile)
+    r.rpush("BitcoinDatabase",jaysonfile)
 
 #-----------------------------------------------------
 
