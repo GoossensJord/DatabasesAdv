@@ -5,7 +5,11 @@ import pymongo as mongo
 import time
 import redis
 
+<<<<<<< HEAD
 r = redis.Redis(host='localhost',port='6379')
+=======
+r = redis.Redis(host='127.0.0.1',port='6379')
+>>>>>>> d29a90a8f78cc676101200d8a6192086e9af4548
 r.delete("BitcoinDatabase")
 
 url = 'https://www.blockchain.com/btc/unconfirmed-transactions'
