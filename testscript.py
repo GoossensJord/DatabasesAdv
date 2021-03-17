@@ -1,5 +1,5 @@
 import redis
 
-r = redis.Redis(host ="127.0.0.1")
+r = redis.Redis(host ='myredis',port:'6379')
 
 r.set("sleutel", "waarde ")
