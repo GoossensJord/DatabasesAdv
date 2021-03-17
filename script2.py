@@ -30,11 +30,11 @@ for x in uniquetimes:
     maxrow = tempdf[tempdf.BTCvalue == tempdf.BTCvalue.max()]
     
     #outputdict = {'Hash': maxrow["Hash"],'Time':maxrow["Time"],'BTC value': maxrow["BTCvalue"],'USD value':maxrow["USDvalue"]}
-    
+    #print(maxrow)
     for x in maxrow.columns:
         outputdict[x] = str(maxrow[x].values)
-    print(outputdict)
+
     mycol.insert_one(outputdict)
 
 #mycol.insert_one({"test": "xd"})
-print(type(outputdict))
+#print(type(outputdict))
