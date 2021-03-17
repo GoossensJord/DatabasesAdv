@@ -5,7 +5,7 @@ import pymongo as mongo
 import numpy as np
 from datetime import date
 
-r = redis.Redis()
+r = redis.Redis(host='myredis',port='6379')
 
 client = mongo.MongoClient("mongodb://mongodb:27017/")
 # Mongoserver starten met "Sudo mongod" don't know why, maar de rest werkt niet.
