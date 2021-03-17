@@ -7,7 +7,7 @@ from datetime import date
 
 r = redis.Redis()
 
-client = mongo.MongoClient("mongodb://127.0.0.1:27017/")
+client = mongo.MongoClient("mongodb://mongodb:27017/")
 # Mongoserver starten met "Sudo mongod" don't know why, maar de rest werkt niet.
 mydb = client["BitcoinValue"]
 mycol = mydb["Topvalue"]
