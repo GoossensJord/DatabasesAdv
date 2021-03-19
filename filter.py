@@ -6,7 +6,7 @@ import numpy as np
 from datetime import date
 import time
 r = redis.Redis(host='myredis',port='6379')
-print(r)
+#print(r)
 client = mongo.MongoClient("mongodb://mongodb:27017/")
 # Mongoserver starten met "Sudo mongod" don't know why, maar de rest werkt niet.
 mydb = client["BitcoinValue"]
@@ -39,15 +39,17 @@ def Filter():
             for y in maxrow.columns:
                 outputdict[y] = str(maxrow[y].values)
                     
-            print(x)
+            #print(x)
 
 
             mycol.insert_one(outputdict)
             r.delete("BitcoinDatabase")
     except:
         time.sleep(60)
+        print("waited filtering")
         Filter()
 while(True):
+    print("filtering")
     Filter()
     print("done")
     
