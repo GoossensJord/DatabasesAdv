@@ -43,6 +43,7 @@ def Filter():
 
 
             mycol.insert_one(outputdict)
+            print(outputdict)
             r.delete("BitcoinDatabase")
     except:
         time.sleep(60)
