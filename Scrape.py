@@ -6,6 +6,7 @@ import time
 import redis
 
 r = redis.Redis(host='dockercompose_redis_1',port='6379')
+
 r.delete("BitcoinDatabase")
 
 url = 'https://www.blockchain.com/btc/unconfirmed-transactions'

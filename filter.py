@@ -5,9 +5,11 @@ import pymongo as mongo
 import numpy as np
 from datetime import date
 import time
+
 r = redis.Redis(host='dockercompose_redis_1',port='6379')
 print(r)
 client = mongo.MongoClient("mongodb://dockercompose_db_1/")
+
 # Mongoserver starten met "Sudo mongod" don't know why, maar de rest werkt niet.
 mydb = client["BitcoinValue"]
 mycol = mydb["Topvalue"]
@@ -48,9 +50,14 @@ def Filter():
     except:
         print("waited")
         time.sleep(60)
+<<<<<<< HEAD
         
+=======
+        print("waited filtering")
+>>>>>>> 7cb4bfde6ea146f8a4f9ec375c1a7f9253ffd127
         Filter()
 while(True):
+    print("filtering")
     Filter()
     print("done")
     
