@@ -5,9 +5,9 @@ import pymongo as mongo
 import numpy as np
 from datetime import date
 import time
-r = redis.Redis(host='127.0.0.1',port='6379')
+r = redis.Redis(host='dockercompose_redis_1',port='6379')
 print(r)
-client = mongo.MongoClient("mongodb://mongodb:27017/")
+client = mongo.MongoClient("mongodb://dockercompose_db_1/")
 # Mongoserver starten met "Sudo mongod" don't know why, maar de rest werkt niet.
 mydb = client["BitcoinValue"]
 mycol = mydb["Topvalue"]
@@ -39,13 +39,16 @@ def Filter():
             for y in maxrow.columns:
                 outputdict[y] = str(maxrow[y].values)
                     
-            print(x)
+            #print(x)
 
 
             mycol.insert_one(outputdict)
+            print(outputdict)
             r.delete("BitcoinDatabase")
     except:
+        print("waited")
         time.sleep(60)
+        
         Filter()
 while(True):
     Filter()
