@@ -48,13 +48,9 @@ def Filter():
             print(outputdict)
             r.delete("BitcoinDatabase")
     except:
-        print("waited")
+
         time.sleep(60)
-<<<<<<< HEAD
-        
-=======
         print("waited filtering")
->>>>>>> 7cb4bfde6ea146f8a4f9ec375c1a7f9253ffd127
         Filter()
 while(True):
     print("filtering")
